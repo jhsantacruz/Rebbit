@@ -1,0 +1,4 @@
+Rebbit
+======
+
+Self destructing application.
