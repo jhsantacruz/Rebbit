@@ -1,4 +1,4 @@
 Rebbit
 ======
 
-Self destructing application.
+Self destructing messaging app.
