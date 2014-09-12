@@ -41,6 +41,11 @@ public class RebbitMainActivity extends Activity implements ActionBar.TabListene
         setContentView(R.layout.activity_rebbit_main);
 
         Intent intent = new Intent(this, LoginActivity.class);
+        // Logging in should be a new Task
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        // Old Task - Starting the app should be cleared so
+        // we can go back to it.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
         // Set up the action bar.
