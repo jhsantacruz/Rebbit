@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,11 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.parse.ParseAnalytics;
+import com.parse.ParseUser;
 
 import java.util.Locale;
 
 
 public class RebbitMainActivity extends Activity implements ActionBar.TabListener {
+
+    public static final String TAG = RebbitMainActivity.class.getSimpleName();
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -45,14 +49,19 @@ public class RebbitMainActivity extends Activity implements ActionBar.TabListene
         //Track Statistics
         ParseAnalytics.trackAppOpened(getIntent());
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        // Logging in should be a new Task
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        // Old Task - Starting the app should be cleared so
-        // we can go back to it.
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        ParseUser currentUser = ParseUser.getCurrentUser();
 
+        if ( currentUser == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            // Logging in should be a new Task
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // Old Task - Starting the app should be cleared so
+            // we can go back to it.
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        } else {
+            Log.i(TAG, currentUser.getUsername());
+        }
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
