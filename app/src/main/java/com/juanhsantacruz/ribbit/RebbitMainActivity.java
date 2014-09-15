@@ -52,13 +52,7 @@ public class RebbitMainActivity extends Activity implements ActionBar.TabListene
         ParseUser currentUser = ParseUser.getCurrentUser();
 
         if ( currentUser == null) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            // Logging in should be a new Task
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            // Old Task - Starting the app should be cleared so
-            // we can go back to it.
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            navigateToLogin();
         } else {
             Log.i(TAG, currentUser.getUsername());
         }
@@ -97,6 +91,16 @@ public class RebbitMainActivity extends Activity implements ActionBar.TabListene
         }
     }
 
+    private void navigateToLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        // Logging in should be a new Task
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        // Old Task - Starting the app should be cleared so
+        // we can go back to it.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,7 +115,9 @@ public class RebbitMainActivity extends Activity implements ActionBar.TabListene
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            ParseUser.logOut();
+            navigateToLogin();
             return true;
         }
         return super.onOptionsItemSelected(item);
