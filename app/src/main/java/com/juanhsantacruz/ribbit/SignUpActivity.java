@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 
 public class SignUpActivity extends Activity {
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

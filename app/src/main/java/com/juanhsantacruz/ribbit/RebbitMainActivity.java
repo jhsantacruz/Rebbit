@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.ParseAnalytics;
+
 import java.util.Locale;
 
 
@@ -39,6 +41,9 @@ public class RebbitMainActivity extends Activity implements ActionBar.TabListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rebbit_main);
+
+        //Track Statistics
+        ParseAnalytics.trackAppOpened(getIntent());
 
         Intent intent = new Intent(this, LoginActivity.class);
         // Logging in should be a new Task
