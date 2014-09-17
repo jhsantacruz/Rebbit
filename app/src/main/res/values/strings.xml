@@ -4,9 +4,7 @@
     <string name="app_name">Ribbit</string>
     <string name="tab_title_1">Inbox</string>
     <string name="tab_title_2">Friends</string>
-
     <string name="action_logout">Log Out</string>
-
     <string name="title_activity_login">Login</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
@@ -16,12 +14,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="email_hint">Email</string>
     <string name="sign_up_button_label">Sign Up</string>
-
     <string name="signup_error_message">"Please make sure you enter a username, password and email address!"</string>
     <string name="signup_error_title">Oooppss!</string>
     <string name="login_error_message">Please make sur eyou enter a username and password.</string>
     <string name="login_error_title">Ooops!</string>
     <string name="empty_inbox_label">No new messages....</string>
     <string name="empty_friends_label">No new friends....</string>
+    <string name="menu_edit_friend_label">Edit Friends</string>
+    <string name="title_activity_edit_friends">Edit Friends</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
