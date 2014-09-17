@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
         setContentView(R.layout.activity_login);
 
         mSignUpTextView = (TextView) findViewById(R.id.signUpText);
@@ -54,10 +57,13 @@ public class LoginActivity extends Activity {
                     dialog.show();
 
                 } else {
-                    //Create the new user!
+                    // Login!
+                    setProgressBarIndeterminateVisibility(true);
                     ParseUser.logInInBackground(username, password, new LogInCallback() {
                         @Override
                         public void done(ParseUser parseUser, ParseException e) {
+                            setProgressBarIndeterminateVisibility(false);
+
                             if (e == null){
                                 //Success
                                 Intent intent = new Intent(LoginActivity.this, RebbitMainActivity.class);
