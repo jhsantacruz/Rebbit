@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
@@ -37,6 +38,7 @@ public class RebbitMainActivity extends FragmentActivity implements ActionBar.Ta
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_rebbit_main);
 
         //Track Statistics
@@ -112,9 +114,11 @@ public class RebbitMainActivity extends FragmentActivity implements ActionBar.Ta
             case R.id.action_logout:
                 ParseUser.logOut();
                 navigateToLogin();
+                return true;
             case R.id.action_edit_friends:
                 Intent intent = new Intent(this, EditFriendsActivity.class);
                 startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
