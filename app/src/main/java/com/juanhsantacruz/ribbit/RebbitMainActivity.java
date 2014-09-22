@@ -259,6 +259,17 @@ public class RebbitMainActivity extends FragmentActivity implements ActionBar.Ta
                 sendBroadcast(mediaScanIntent);
             }
 
+            Intent recipientsIntent = new Intent(this, RecipientsActivity.class);
+            recipientsIntent.setData(mMediaUri);
+            String fileType;
+            if(requestCode == PICK_PHOTO_REQUEST || requestCode == TAKE_PHOTO_REQUEST){
+                fileType = ParseConstants.TYPE_IMAGE;
+            } else {
+                fileType = ParseConstants.TYPE_VIDEO;
+            }
+            recipientsIntent.putExtra(ParseConstants.KEY_FILE_TYPE, fileType);
+            startActivity(recipientsIntent);
+
         } else if (resultCode != RESULT_CANCELED) {
             Toast.makeText(this, "Sorry, there was an error!", Toast.LENGTH_LONG).show();
         }
